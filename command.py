@@ -1,5 +1,6 @@
-from struct import unpack_from, pack
+from struct import *
 from enum import IntEnum
+import binascii
 
 
 class Commands(IntEnum):
@@ -53,7 +54,7 @@ class Commands(IntEnum):
     DISCONNECT = 0x0406
     READ_REMOTE_VERSION_INFORMATION = 0x041D
     SET_EVENT_MASK = 0x0C01
-    RESET = 0x0C03
+    HCI_RESET = 0x0C03
     READ_TRANSMIT_POWER_LEVEL = 0x0C2D
     SET_CONTROLLER_TO_HOST_FLOW_CONTROL = 0x0C31
     HOST_BUFFER_SIZE = 0x0C33
@@ -185,10 +186,13 @@ class CommandPacket:
     PACKET_TYPE = 0x01
     OFFSET_DATA_LENGTH = 0x03
 
-    def __init__(self, opcode, parameters):
+    def __init__(self, opcode, parameters=b''):
         self.opcode = opcode
         self.parameter_total_length = len(parameters)
         self.parameters = parameters
+
+    def _get_parameter(self, offset, size_octets):
+        return self.parameters[offset: offset + size_octets]
 
     def to_binary(self):
         return pack('<BHB',
@@ -206,10 +210,10 @@ class CommandPacket:
             hex(CommandPacket.PACKET_TYPE),
             int(CommandPacket.PACKET_TYPE),
             hex(self.opcode),
-            int(self.opcode),
+            Commands(self.opcode).name,
             hex(self.parameter_total_length),
             int(self.parameter_total_length),
-            bytes(self.parameters)
+            binascii.hexlify(self.parameters).decode('utf-8'),
         )
 
     @staticmethod
@@ -222,11 +226,84 @@ class CommandPacket:
         )
 
 
-class HCI_EXT_SetRxGainCmd:
-    def __init__(self):
-        raise NotImplementedError()
+def _hex_address_to_bytes(addr):
+    return binascii.unhexlify(addr.replace(':', ''))
 
 
-class HCI_EXT_SetTxPowerCmd:
+class HCI_Reset(CommandPacket):
     def __init__(self):
-        raise NotImplementedError()
+        super().__init__(Commands.HCI_RESET)
+
+
+class GAP_DeviceInit(CommandPacket):
+    class ProfileRoles(IntEnum):
+        GAP_PROFILE_BROADCASTER = 0x01
+        GAP_PROFILE_OBSERVER = 0x02
+        GAP_PROFILE_PERIPHERAL = 0x04
+        GAP_PROFILE_CENTRAL = 0x08
+
+    def __init__(self, profile_role, max_scan_responses, irk, csrk,
+                 sign_counter):
+        super().__init__(
+            Commands.GAP_DEVICE_INITIALIZATION,
+            GAP_DeviceInit._params_to_binary(
+                profile_role, max_scan_responses, irk, csrk, sign_counter)
+        )
+
+    @staticmethod
+    def _params_to_binary(profile_role, max_scan_responses, irk, csrk,
+                          sign_counter):
+        return pack('<BB16B16BI',
+                    profile_role,
+                    max_scan_responses,
+                    *tuple(_hex_address_to_bytes(irk)),
+                    *tuple(_hex_address_to_bytes(csrk)),
+                    sign_counter)
+
+    @property
+    def profile_role(self):
+        OFFSET, SIZE_OCTETS = 0, 1
+        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        return unpack('<B', data)[0]
+
+    @property
+    def max_scan_responses(self):
+        OFFSET, SIZE_OCTETS = 1, 1
+        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        return unpack('<B', data)[0]
+
+    @property
+    def irk(self):
+        OFFSET, SIZE_OCTETS = 2, 16
+        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        return data
+
+    @property
+    def csrk(self):
+        OFFSET, SIZE_OCTETS = 18, 16
+        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        return data
+
+    @property
+    def sign_counter(self):
+        OFFSET, SIZE_OCTETS = 34, 4
+        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        return unpack('<I', data)[0]
+
+    def __str__(self):
+        return super().__str__() + '\n' + '\n'.join([
+            'Profile Role: {} ({})',
+            'Max. Scan Responses: {} ({})',
+            'IRK: {}',
+            'CSRK: {}',
+            'Sign Counter: {} ({})',
+        ]).format(
+            hex(self.profile_role),
+            GAP_DeviceInit.ProfileRoles(self.profile_role).name,
+            hex(self.max_scan_responses),
+            int(self.max_scan_responses),
+            binascii.hexlify(self.irk).decode('utf-8'),
+            binascii.hexlify(self.csrk).decode('utf-8'),
+            hex(self.sign_counter),
+            int(self.sign_counter),
+        )
