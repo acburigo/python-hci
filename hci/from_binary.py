@@ -1,5 +1,5 @@
-from command import *
-from event import *
+from .command import *
+from .event import *
 
 
 def _parse_pkt_length(buffer, pkt_type, pkt_offset):
