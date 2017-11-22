@@ -5,8 +5,11 @@ from .opcode import OpCode
 
 
 _opcode_to_class = {
-    OpCode.HCI_RESET: HCI_Reset,
+    OpCode.GAP_DEVICE_DISCOVERY_REQUEST: GAP_DeviceDiscoveryRequest,
     OpCode.GAP_DEVICE_INITIALIZATION: GAP_DeviceInit,
+    OpCode.GAP_ESTABLISH_LINK_REQUEST: GAP_EstablishLinkReq,
+    OpCode.GAP_GET_PARAMETER: GAP_GetParam,
+    OpCode.HCI_RESET: HCI_Reset,
 }
 
 

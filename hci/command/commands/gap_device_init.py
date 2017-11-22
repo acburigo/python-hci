@@ -48,13 +48,13 @@ class GAP_DeviceInit(CommandPacket):
     def irk(self):
         OFFSET, SIZE_OCTETS = 2, 16
         data = self._get_parameter(OFFSET, SIZE_OCTETS)
-        return data
+        return data[::-1]
 
     @property
     def csrk(self):
         OFFSET, SIZE_OCTETS = 18, 16
         data = self._get_parameter(OFFSET, SIZE_OCTETS)
-        return data
+        return data[::-1]
 
     @property
     def sign_counter(self):
