@@ -1,3 +1,4 @@
+from . import asynchronous
 from . import command
 from . import event
 from . import HciPacket
@@ -5,11 +6,14 @@ from . import HciPacket
 
 def _autocast(pkt):
     _packet_type_to_class = {
+        HciPacket.PacketType.ASYNCHRONOUS_DATA:
+            asynchronous.AsynchronousDataPacket,
         HciPacket.PacketType.COMMAND: command.CommandPacket,
         HciPacket.PacketType.EVENT: event.EventPacket,
     }
 
     _class_to_autocast_func = {
+        asynchronous.AsynchronousDataPacket: asynchronous._autocast,
         command.CommandPacket: command._autocast,
         event.EventPacket: event._autocast,
     }

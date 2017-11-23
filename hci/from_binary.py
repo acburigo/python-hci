@@ -1,6 +1,7 @@
 from struct import unpack_from
 
 from .hci_packet import HciPacket
+from .asynchronous import AsynchronousDataPacket
 from .command import CommandPacket
 from .event import EventPacket
 from .autocast import _autocast
@@ -8,17 +9,24 @@ from .autocast import _autocast
 
 def _parse_pkt_length(buf, pkt_type, pkt_offset):
     if (pkt_type == HciPacket.PacketType.COMMAND):
-        offset = pkt_offset + CommandPacket.OFFSET_DATA_LENGTH
+        offset_data_length = CommandPacket.OFFSET_DATA_LENGTH
+        offset = pkt_offset + offset_data_length
         data_length = unpack_from('<B', buf, offset=offset)[0]
-        pkt_length = 1 + CommandPacket.OFFSET_DATA_LENGTH + data_length
 
     elif (pkt_type == HciPacket.PacketType.EVENT):
-        offset = pkt_offset + EventPacket.OFFSET_DATA_LENGTH
+        offset_data_length = EventPacket.OFFSET_DATA_LENGTH
+        offset = pkt_offset + offset_data_length
         data_length = unpack_from('<B', buf, offset=offset)[0]
-        pkt_length = 1 + EventPacket.OFFSET_DATA_LENGTH + data_length
+
+    elif (pkt_type == HciPacket.PacketType.ASYNCHRONOUS_DATA):
+        offset_data_length = AsynchronousDataPacket.OFFSET_DATA_LENGTH
+        offset = pkt_offset + offset_data_length
+        data_length = unpack_from('<H', buf, offset=offset)[0]
 
     else:
-        raise NotImplementedError()
+        raise NotImplementedError(pkt_type)
+
+    pkt_length = 1 + offset_data_length + data_length
     return pkt_length
 
 
