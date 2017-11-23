@@ -1,3 +1,4 @@
+from .att_exchange_mtu_req import ATT_ExchangeMTUReq
 from .gap_device_discovery_request import GAP_DeviceDiscoveryRequest
 from .gap_device_init import GAP_DeviceInit
 from .gap_establish_link_req import GAP_EstablishLinkReq
