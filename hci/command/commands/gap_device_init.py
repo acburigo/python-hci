@@ -2,7 +2,7 @@ from enum import IntEnum
 from struct import unpack, pack
 from binascii import hexlify
 
-from ..command import CommandPacket
+from ..command_packet import CommandPacket
 from ..opcode import OpCode
 from ..transforms import _hex_address_to_bytes
 
@@ -34,32 +34,32 @@ class GAP_DeviceInit(CommandPacket):
 
     @property
     def profile_role(self):
-        OFFSET, SIZE_OCTETS = 0, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 4, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     @property
     def max_scan_responses(self):
-        OFFSET, SIZE_OCTETS = 1, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 5, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     @property
     def irk(self):
-        OFFSET, SIZE_OCTETS = 2, 16
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 6, 16
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return data[::-1]
 
     @property
     def csrk(self):
-        OFFSET, SIZE_OCTETS = 18, 16
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 22, 16
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return data[::-1]
 
     @property
     def sign_counter(self):
-        OFFSET, SIZE_OCTETS = 34, 4
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 38, 4
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<I', data)[0]
 
     def __str__(self):

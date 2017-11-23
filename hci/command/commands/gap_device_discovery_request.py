@@ -1,7 +1,7 @@
 from enum import IntEnum
 from struct import pack, unpack
 
-from ..command import CommandPacket
+from ..command_packet import CommandPacket
 from ..opcode import OpCode
 
 
@@ -33,20 +33,20 @@ class GAP_DeviceDiscoveryRequest(CommandPacket):
 
     @property
     def mode(self):
-        OFFSET, SIZE_OCTETS = 0, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 4, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     @property
     def active_scan(self):
-        OFFSET, SIZE_OCTETS = 1, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 5, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     @property
     def white_list(self):
-        OFFSET, SIZE_OCTETS = 2, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 6, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     def __str__(self):

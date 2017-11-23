@@ -1,7 +1,7 @@
 from struct import pack, unpack
 from binascii import hexlify
 
-from ..command import CommandPacket
+from ..command_packet import CommandPacket
 from ..opcode import OpCode
 
 
@@ -19,22 +19,22 @@ class GATT_WriteCharValue(CommandPacket):
 
     @property
     def conn_handle(self):
-        OFFSET, SIZE_OCTETS = 0, 2
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 4, 2
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<H', data)[0]
 
     @property
     def handle(self):
-        OFFSET, SIZE_OCTETS = 2, 2
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 6, 2
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<H', data)[0]
 
     @property
     def value(self):
-        OFFSET = 4
+        OFFSET = 8
         SIZE_OCTETS = self.parameter_total_length - OFFSET
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
-        return unpack('<%ds' % SIZE_OCTETS, data)[0]
+        data = self._get_data(OFFSET, SIZE_OCTETS)
+        return data
 
     def __str__(self):
         return super().__str__() + '\n' + '\n'.join([

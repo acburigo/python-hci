@@ -1,4 +1,4 @@
-from ..command import CommandPacket
+from ..command_packet import CommandPacket
 from ..opcode import OpCode
 
 

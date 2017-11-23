@@ -1,5 +1,5 @@
 from struct import unpack_from
-from .command import CommandPacket
+from .command_packet import CommandPacket
 from .commands import *
 from .opcode import OpCode
 

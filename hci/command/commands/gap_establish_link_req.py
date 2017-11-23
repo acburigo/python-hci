@@ -2,7 +2,7 @@ from enum import IntEnum
 from struct import pack, unpack
 from binascii import hexlify
 
-from ..command import CommandPacket
+from ..command_packet import CommandPacket
 from ..opcode import OpCode
 from ..transforms import _hex_address_to_bytes
 
@@ -42,26 +42,26 @@ class GAP_EstablishLinkReq(CommandPacket):
 
     @property
     def high_duty_cycle(self):
-        OFFSET, SIZE_OCTETS = 0, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 4, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     @property
     def white_list(self):
-        OFFSET, SIZE_OCTETS = 1, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 5, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     @property
     def addr_type_peer(self):
-        OFFSET, SIZE_OCTETS = 2, 1
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 6, 1
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return unpack('<B', data)[0]
 
     @property
     def peer_addr(self):
-        OFFSET, SIZE_OCTETS = 3, 6
-        data = self._get_parameter(OFFSET, SIZE_OCTETS)
+        OFFSET, SIZE_OCTETS = 7, 6
+        data = self._get_data(OFFSET, SIZE_OCTETS)
         return data[::-1]
 
     def __str__(self):
