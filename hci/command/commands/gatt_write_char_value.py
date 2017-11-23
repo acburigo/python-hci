@@ -32,8 +32,7 @@ class GATT_WriteCharValue(CommandPacket):
     @property
     def value(self):
         OFFSET = 8
-        SIZE_OCTETS = self.parameter_total_length - OFFSET
-        data = self._get_data(OFFSET, SIZE_OCTETS)
+        data = self._get_data(OFFSET)
         return data
 
     def __str__(self):
