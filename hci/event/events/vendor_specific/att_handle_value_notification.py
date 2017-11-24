@@ -1,7 +1,7 @@
-from binascii import hexlify
 from struct import unpack_from
 
 from .. import VendorSpecificEvent
+from hci.transforms import _bytes_to_hex_string
 
 
 class ATTHandleValueNotification(VendorSpecificEvent):
@@ -41,4 +41,5 @@ class ATTHandleValueNotification(VendorSpecificEvent):
             int(self.pdu_len),
             hex(self.handle),
             int(self.handle),
-            hexlify(self.value).decode('utf-8'))
+            _bytes_to_hex_string(self.value)
+        )

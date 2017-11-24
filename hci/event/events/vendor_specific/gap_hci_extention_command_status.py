@@ -1,8 +1,8 @@
 from struct import unpack_from
-from binascii import hexlify
 
 from .. import VendorSpecificEvent
 from hci.command.opcode import OpCode
+from hci.transforms import _bytes_to_hex_string
 
 
 class GAP_HCI_ExtentionCommandStatus(VendorSpecificEvent):
@@ -33,4 +33,5 @@ class GAP_HCI_ExtentionCommandStatus(VendorSpecificEvent):
             OpCode(self.opcode).name,
             hex(self.data_length),
             int(self.data_length),
-            hexlify(self.param_value).decode('utf-8'))
+            _bytes_to_hex_string(self.param_value)
+        )

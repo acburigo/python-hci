@@ -1,10 +1,10 @@
 from enum import IntEnum
 from struct import unpack, pack
-from binascii import hexlify
 
 from ..command_packet import CommandPacket
 from ..opcode import OpCode
-from ..transforms import _hex_address_to_bytes
+from hci.transforms import _hex_string_to_bytes
+from hci.transforms import _bytes_to_hex_string
 
 
 class GAP_DeviceInit(CommandPacket):
@@ -28,8 +28,8 @@ class GAP_DeviceInit(CommandPacket):
         return pack('<BB16B16BI',
                     profile_role,
                     max_scan_responses,
-                    *tuple(_hex_address_to_bytes(irk)),
-                    *tuple(_hex_address_to_bytes(csrk)),
+                    *tuple(_hex_string_to_bytes(irk)),
+                    *tuple(_hex_string_to_bytes(csrk)),
                     sign_counter)
 
     @property
@@ -74,8 +74,8 @@ class GAP_DeviceInit(CommandPacket):
             GAP_DeviceInit.ProfileRole(self.profile_role).name,
             hex(self.max_scan_responses),
             int(self.max_scan_responses),
-            hexlify(self.irk).decode('utf-8'),
-            hexlify(self.csrk).decode('utf-8'),
+            _bytes_to_hex_string(self.irk),
+            _bytes_to_hex_string(self.csrk),
             hex(self.sign_counter),
             int(self.sign_counter),
         )

@@ -1,7 +1,7 @@
-from binascii import hexlify
 from struct import unpack_from
 
 from .. import VendorSpecificEvent
+from hci.transforms import _bytes_to_hex_string
 
 
 class GAP_DeviceInitDone(VendorSpecificEvent):
@@ -42,10 +42,11 @@ class GAP_DeviceInitDone(VendorSpecificEvent):
             'Num Data Packets: {} ({})',
             'IRK: {}',
             'CSRK: {}']).format(
-            hexlify(self.dev_addrs).decode('utf-8'),
+            _bytes_to_hex_string(self.dev_addrs),
             hex(self.data_pkt_len),
             int(self.data_pkt_len),
             hex(self.num_data_pkts),
             int(self.num_data_pkts),
-            hexlify(self.irk).decode('utf-8'),
-            hexlify(self.csrk).decode('utf-8'))
+            _bytes_to_hex_string(self.irk),
+            _bytes_to_hex_string(self.csrk)
+        )

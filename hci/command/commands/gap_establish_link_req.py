@@ -1,10 +1,10 @@
 from enum import IntEnum
 from struct import pack, unpack
-from binascii import hexlify
 
 from ..command_packet import CommandPacket
 from ..opcode import OpCode
-from ..transforms import _hex_address_to_bytes
+from hci.transforms import _hex_string_to_bytes
+from hci.transforms import _bytes_to_hex_string
 
 
 class GAP_EstablishLinkReq(CommandPacket):
@@ -38,7 +38,7 @@ class GAP_EstablishLinkReq(CommandPacket):
                     high_duty_cycle,
                     white_list,
                     addr_type_peer,
-                    _hex_address_to_bytes(peer_addr))
+                    _hex_string_to_bytes(peer_addr))
 
     @property
     def high_duty_cycle(self):
@@ -77,5 +77,5 @@ class GAP_EstablishLinkReq(CommandPacket):
             GAP_EstablishLinkReq.WhiteList(self.white_list).name,
             hex(self.addr_type_peer),
             GAP_EstablishLinkReq.AddrTypePeer(self.addr_type_peer).name,
-            hexlify(self.peer_addr).decode('utf-8'),
+            _bytes_to_hex_string(self.peer_addr),
         )

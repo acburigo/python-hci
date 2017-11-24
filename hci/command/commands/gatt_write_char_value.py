@@ -1,8 +1,8 @@
 from struct import pack, unpack
-from binascii import hexlify
 
 from ..command_packet import CommandPacket
 from ..opcode import OpCode
+from hci.transforms import _bytes_to_hex_string
 
 
 class GATT_WriteCharValue(CommandPacket):
@@ -45,5 +45,5 @@ class GATT_WriteCharValue(CommandPacket):
             int(self.conn_handle),
             hex(self.handle),
             int(self.handle),
-            hexlify(self.value).decode('utf-8'),
+            _bytes_to_hex_string(self.value),
         )
