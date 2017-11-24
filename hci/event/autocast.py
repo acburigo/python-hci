@@ -4,7 +4,8 @@ from . import events
 
 def _autocast(pkt):
     _event_code_to_class = {
-        EventCodes.VENDOR_SPECIFIC_EVENT: events.VendorSpecificEvent
+        EventCodes.VENDOR_SPECIFIC_EVENT: events.VendorSpecificEvent,
+        EventCodes.HCI_COMMAND_COMPLETE: events.HCI_CommandComplete
     }
     _class_to_autocast_func = {
         events.VendorSpecificEvent: events.vendor_specific._autocast

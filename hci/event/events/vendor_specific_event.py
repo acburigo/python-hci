@@ -2,7 +2,7 @@ from enum import IntEnum
 from struct import unpack_from
 
 from hci.event import EventPacket
-from .vendor_specific import VendorSpecificEvents
+from .vendor_specific_events import VendorSpecificEvents
 
 
 class VendorSpecificEvent(EventPacket):
