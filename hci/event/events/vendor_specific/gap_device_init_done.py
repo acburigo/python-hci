@@ -37,9 +37,9 @@ class GAP_DeviceInitDone(VendorSpecificEvent):
 
     def __str__(self):
         return super().__str__() + '\n' + '\n'.join([
-            'DevAddr: {}',
-            'DataPktLen: {} ({})'
-            'NumDataPkts: {} ({})',
+            'Device Address: {}',
+            'Data Packet Length: {} ({})',
+            'Num Data Packets: {} ({})',
             'IRK: {}',
             'CSRK: {}']).format(
             hexlify(self.dev_addrs).decode('utf-8'),

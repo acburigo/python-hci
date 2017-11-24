@@ -31,8 +31,8 @@ class ATTHandleValueNotification(VendorSpecificEvent):
 
     def __str__(self):
         return super().__str__() + '\n' + '\n'.join([
-            'ConnHandle: {}, ({})',
-            'PduLen: {} ({})',
+            'Connection Handle: {}, ({})',
+            'PDU Length: {} ({})',
             'Handle: {} ({})',
             'Value: {}']).format(
             hex(self.conn_handle),

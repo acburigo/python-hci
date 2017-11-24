@@ -27,7 +27,7 @@ class GAP_HCI_ExtentionCommandStatus(VendorSpecificEvent):
     def __str__(self):
         return super().__str__() + '\n' + '\n'.join([
             'OpCode: {} ({})',
-            'DataLength: {} ({})',
+            'Data Length: {} ({})',
             'Param: {}']).format(
             hex(self.opcode),
             OpCode(self.opcode).name,
