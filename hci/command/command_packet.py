@@ -6,6 +6,7 @@ from .opcode import OpCode
 
 class CommandPacket(HciPacket):
     OFFSET_DATA_LENGTH = 0x03
+    OpCode = OpCode
 
     def __init__(self, opcode, parameters=b''):
         super().__init__(
