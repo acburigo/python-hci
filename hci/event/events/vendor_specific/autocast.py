@@ -5,7 +5,7 @@ from hci.event.events import vendor_specific
 def _autocast(pkt):
     _event_to_class = {
         VendorSpecificEvents.ATT_HANDLE_VALUE_NOTIFICATION:
-            vendor_specific.ATTHandleValueNotification,
+            vendor_specific.ATT_HandleValueNotification,
         VendorSpecificEvents.GAP_DEVICE_INIT_DONE:
             vendor_specific.GAP_DeviceInitDone,
         VendorSpecificEvents.GAP_COMMAND_STATUS:

@@ -4,7 +4,7 @@ from .. import VendorSpecificEvent
 from hci.transforms import _bytes_to_hex_string
 
 
-class ATTHandleValueNotification(VendorSpecificEvent):
+class ATT_HandleValueNotification(VendorSpecificEvent):
     @property
     def conn_handle(self):
         OFFSET, SIZE_OCTETS = 6, 2

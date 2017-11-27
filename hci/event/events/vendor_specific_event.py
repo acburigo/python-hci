@@ -9,7 +9,7 @@ class VendorSpecificEvent(EventPacket):
     class Status(IntEnum):
         SUCCESS = 0x00
         FAILURE = 0x01
-        INVALIDPARAMETER = 0x02
+        INVALID_PARAMETER = 0x02
         INVALID_TASK = 0x03
         MSG_BUFFER_NOT_AVAIL = 0x04
         INVALID_MSG_POINTER = 0x05
