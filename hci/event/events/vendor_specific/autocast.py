@@ -13,7 +13,9 @@ def _autocast(pkt):
         VendorSpecificEvents.GAP_DEVICE_INFORMATION:
             vendor_specific.GAP_DeviceInformation,
         VendorSpecificEvents.GAP_DEVICE_DISCOVERY:
-            vendor_specific.GAP_DeviceDiscoveryDone
+            vendor_specific.GAP_DeviceDiscoveryDone,
+        VendorSpecificEvents.GAP_LINK_ESTABLISHED:
+            vendor_specific.GAP_LinkEstablished
     }
 
     try:
