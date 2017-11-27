@@ -17,7 +17,9 @@ def _autocast(pkt):
         VendorSpecificEvents.GAP_LINK_ESTABLISHED:
             vendor_specific.GAP_LinkEstablished,
         VendorSpecificEvents.GAP_LINK_PARAMETER_UPDATE:
-            vendor_specific.GAP_LinkParamUpdate
+            vendor_specific.GAP_LinkParamUpdate,
+        VendorSpecificEvents.ATT_WRITE_RESPONSE:
+            vendor_specific.ATT_WriteResponse,
     }
 
     try:

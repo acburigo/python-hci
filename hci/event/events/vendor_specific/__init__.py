@@ -6,3 +6,4 @@ from .gap_device_information import GAP_DeviceInformation
 from .gap_device_discovery_done import GAP_DeviceDiscoveryDone
 from .gap_link_established import GAP_LinkEstablished
 from .gap_link_param_update import GAP_LinkParamUpdate
+from .att_write_response import ATT_WriteResponse
