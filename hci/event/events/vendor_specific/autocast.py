@@ -9,7 +9,11 @@ def _autocast(pkt):
         VendorSpecificEvents.GAP_DEVICE_INIT_DONE:
             vendor_specific.GAP_DeviceInitDone,
         VendorSpecificEvents.GAP_COMMAND_STATUS:
-            vendor_specific.GAP_HCI_ExtentionCommandStatus
+            vendor_specific.GAP_HCI_ExtentionCommandStatus,
+        VendorSpecificEvents.GAP_DEVICE_INFORMATION:
+            vendor_specific.GAP_DeviceInformation,
+        VendorSpecificEvents.GAP_DEVICE_DISCOVERY:
+            vendor_specific.GAP_DeviceDiscoveryDone
     }
 
     try:

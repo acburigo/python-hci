@@ -40,6 +40,19 @@ class VendorSpecificEvent(EventPacket):
         BLE_INSUFFICIENT_KEY_SIZE = 0x43
         INVALID_TASK_ID = 0xFF
 
+    class EventType(IntEnum):
+        CONNECTABLE_UNDIRECTED_ADVERTISEMENT = 0x00
+        CONNECTABLE_DIRECTED_ADVERTISEMENT = -0x01
+        DISCOVERABLE_UNDIRECTED_ADVERTISEMENT = 0x02
+        NON_CONNECTABLE_UNDIRECTED_ADVERTISEMENT = 0x03
+        SCAN_RESPONSE = 4
+
+    class AdressType(IntEnum):
+        ADDRTYPE_PUBLIC = 0x00
+        ADDRTYPE_STATIC = 0x01
+        ADDRTYPE_PRIVATE_NONRESOLVE = 0x02
+        ADDRTYPE_PRIVATE_RESOLVE = 0x03
+
     @property
     def event(self):
         OFFSET, SIZE_OCTETS = 3, 2
