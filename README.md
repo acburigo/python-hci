@@ -46,3 +46,7 @@ Client RX MTU: 0x64 (100)
 ## References
 - [Bluetooth Core Specification 5.0](https://www.bluetooth.com/specifications/bluetooth-core-specification)
 - [Texas Instruments BLE Vendor Specific HCI Guide](http://www.ti.com/tool/BLE-STACK)
+
+## Developers
+
+This repository is currently maintained by [Arthur Crippa Búrigo](https://github.com/acburigo) and [Pedro Gyrão](https://github.com/pedrogyrao).
