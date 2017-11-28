@@ -10,3 +10,4 @@ from .att_write_response import ATT_WriteResponse
 from .gap_link_terminated import GAP_LinkTerminated
 from .att_exchange_mtu_response import ATT_ExchangeMTUResponse
 from .att_mtu_updated import ATT_MtuUpdated
+from .att_error_response import ATT_ErrorResponse

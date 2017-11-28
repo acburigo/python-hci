@@ -25,7 +25,9 @@ def _autocast(pkt):
         VendorSpecificEvents.ATT_EXCHANGE_MTU_RESPONSE:
             vendor_specific.ATT_ExchangeMTUResponse,
         VendorSpecificEvents.ATT_MTU_UPDATED_EVT:
-            vendor_specific.ATT_MtuUpdated
+            vendor_specific.ATT_MtuUpdated,
+        VendorSpecificEvents.ATT_ERROR_RESPONSE:
+            vendor_specific.ATT_ErrorResponse,
     }
 
     try:
