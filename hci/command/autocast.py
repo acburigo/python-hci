@@ -11,6 +11,7 @@ def _autocast(pkt):
         OpCode.GAP_GET_PARAMETER: GAP_GetParam,
         OpCode.GATT_WRITE: GATT_WriteCharValue,
         OpCode.HCI_RESET: HCI_Reset,
+        OpCode.UTIL_BUILD_REVISION: UTIL_BuildRevision,
     }
 
     try:
