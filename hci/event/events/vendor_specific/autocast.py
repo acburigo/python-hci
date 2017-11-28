@@ -24,6 +24,8 @@ def _autocast(pkt):
             vendor_specific.GAP_LinkTerminated,
         VendorSpecificEvents.ATT_EXCHANGE_MTU_RESPONSE:
             vendor_specific.ATT_ExchangeMTUResponse,
+        VendorSpecificEvents.ATT_MTU_UPDATED_EVT:
+            vendor_specific.ATT_MtuUpdated
     }
 
     try:
