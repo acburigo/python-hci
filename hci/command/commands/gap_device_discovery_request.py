@@ -2,7 +2,6 @@ from enum import IntEnum
 from struct import pack, unpack
 
 from ..command_packet import CommandPacket
-from ..opcode import OpCode
 
 
 class GAP_DeviceDiscoveryRequest(CommandPacket):
@@ -22,7 +21,7 @@ class GAP_DeviceDiscoveryRequest(CommandPacket):
 
     def __init__(self, mode, active_scan, white_list):
         super().__init__(
-            OpCode.GAP_DEVICE_DISCOVERY_REQUEST,
+            CommandPacket.OpCode.GAP_DEVICE_DISCOVERY_REQUEST,
             GAP_DeviceDiscoveryRequest._params_to_binary(mode, active_scan,
                                                          white_list)
         )

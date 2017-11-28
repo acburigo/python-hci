@@ -2,7 +2,6 @@ from enum import IntEnum
 from struct import unpack, pack
 
 from ..command_packet import CommandPacket
-from ..opcode import OpCode
 from hci.transforms import _hex_string_to_bytes
 from hci.transforms import _bytes_to_hex_string
 
@@ -17,7 +16,7 @@ class GAP_DeviceInit(CommandPacket):
     def __init__(self, profile_role, max_scan_responses, irk, csrk,
                  sign_counter):
         super().__init__(
-            OpCode.GAP_DEVICE_INITIALIZATION,
+            CommandPacket.OpCode.GAP_DEVICE_INITIALIZATION,
             GAP_DeviceInit._params_to_binary(
                 profile_role, max_scan_responses, irk, csrk, sign_counter)
         )

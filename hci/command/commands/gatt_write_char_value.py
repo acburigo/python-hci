@@ -1,14 +1,13 @@
 from struct import pack, unpack
 
 from ..command_packet import CommandPacket
-from ..opcode import OpCode
 from hci.transforms import _bytes_to_hex_string
 
 
 class GATT_WriteCharValue(CommandPacket):
     def __init__(self, conn_handle, handle, value):
         super().__init__(
-            OpCode.GATT_WRITE,
+            CommandPacket.OpCode.GATT_WRITE,
             GATT_WriteCharValue._params_to_binary(conn_handle, handle, value)
         )
 

@@ -1,13 +1,12 @@
 from struct import pack, unpack
 
 from ..command_packet import CommandPacket
-from ..opcode import OpCode
 
 
 class GAP_GetParam(CommandPacket):
     def __init__(self, param_id):
         super().__init__(
-            OpCode.GAP_GET_PARAMETER,
+            CommandPacket.OpCode.GAP_GET_PARAMETER,
             GAP_GetParam._params_to_binary(param_id)
         )
 

@@ -2,7 +2,6 @@ from enum import IntEnum
 from struct import pack, unpack
 
 from ..command_packet import CommandPacket
-from ..opcode import OpCode
 from hci.transforms import _hex_string_to_bytes
 from hci.transforms import _bytes_to_hex_string
 
@@ -24,7 +23,7 @@ class GAP_EstablishLinkReq(CommandPacket):
 
     def __init__(self, high_duty_cycle, white_list, addr_type_peer, peer_addr):
         super().__init__(
-            OpCode.GAP_ESTABLISH_LINK_REQUEST,
+            CommandPacket.OpCode.GAP_ESTABLISH_LINK_REQUEST,
             GAP_EstablishLinkReq._params_to_binary(high_duty_cycle,
                                                    white_list,
                                                    addr_type_peer,

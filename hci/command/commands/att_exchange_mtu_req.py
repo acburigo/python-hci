@@ -1,13 +1,12 @@
 from struct import pack, unpack
 
 from ..command_packet import CommandPacket
-from ..opcode import OpCode
 
 
 class ATT_ExchangeMTUReq(CommandPacket):
     def __init__(self, conn_handle, client_rx_mtu):
         super().__init__(
-            OpCode.ATT_EXCHANGE_MTU_REQUEST,
+            CommandPacket.OpCode.ATT_EXCHANGE_MTU_REQUEST,
             ATT_ExchangeMTUReq._params_to_binary(conn_handle, client_rx_mtu)
         )
 
