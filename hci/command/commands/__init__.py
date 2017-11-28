@@ -6,3 +6,4 @@ from .gap_get_param import GAP_GetParam
 from .gatt_write_char_value import GATT_WriteCharValue
 from .hci_reset import HCI_Reset
 from .util_build_revision import UTIL_BuildRevision
+from .util_force_boot import UTIL_ForceBoot

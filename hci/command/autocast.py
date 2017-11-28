@@ -12,6 +12,7 @@ def _autocast(pkt):
         OpCode.GATT_WRITE: GATT_WriteCharValue,
         OpCode.HCI_RESET: HCI_Reset,
         OpCode.UTIL_BUILD_REVISION: UTIL_BuildRevision,
+        OpCode.UTIL_FORCE_BOOT: UTIL_ForceBoot,
     }
 
     try:
