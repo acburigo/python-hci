@@ -31,7 +31,7 @@ b'\x01\x02\xfd\x04\x00\x00d\x00'
 ```
 In [1]: import hci
 
-In [2]: pkts = hci.from_binary(b'\x01\x02\xfd\x04\x00\x00d\x00')
+In [2]: pkts, _ = hci.from_binary(b'\x01\x02\xfd\x04\x00\x00d\x00')
 
 In [3]: print(pkts[0])
 Packet Type: 0x1 (COMMAND)
