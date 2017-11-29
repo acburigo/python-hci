@@ -35,17 +35,23 @@ def _parse_pkt_type(buf, pkt_offset):
 
 
 def from_binary(buf):
+    PACKET_TYPE_SIZE_OCTETS = 1
     pkts = []
     pkt_offset = 0
+    incomplete_pkt_data = b''
 
     while (pkt_offset < len(buf)):
         pkt_type = _parse_pkt_type(buf, pkt_offset)
         pkt_length = _parse_pkt_length(buf, pkt_type, pkt_offset)
-        payload = buf[pkt_offset + 1:pkt_offset + pkt_length]
+        pkt_data = buf[pkt_offset:pkt_offset + pkt_length]
 
-        pkt = HciPacket(pkt_type, payload)
+        if (len(pkt_data) < pkt_length):
+            incomplete_pkt_data = pkt_data
+            break
+
+        pkt = HciPacket(pkt_type, pkt_data[PACKET_TYPE_SIZE_OCTETS:])
         pkt = _autocast(pkt)
         pkts.append(pkt)
 
         pkt_offset += pkt_length
-    return pkts
+    return pkts, incomplete_pkt_data
