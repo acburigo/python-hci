@@ -1,4 +1,4 @@
-# Python HCI Protocol
+# Python HCI
 
 This is a library for creating and parsing HCI packets.
 
@@ -42,6 +42,12 @@ Data Length: 0x4 (4)
 Connection Handle: 0x0 (0)
 Client RX MTU: 0x64 (100)
 ```
+
+## Installation
+
+You can install this package issuing the following command:
+
+`pip install git+https://github.com/acburigo/python-hci`
 
 ## References
 - [Bluetooth Core Specification 5.0](https://www.bluetooth.com/specifications/bluetooth-core-specification)
