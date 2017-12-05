@@ -45,7 +45,11 @@ Client RX MTU: 0x64 (100)
 
 ## Installation
 
-You can install this package issuing the following command:
+For installing an official release, you may issue the following command:
+
+`pip install hci`
+
+If you are interested in the latest (possibly unstable) features, you may issue the following command:
 
 `pip install git+https://github.com/acburigo/python-hci`
 
