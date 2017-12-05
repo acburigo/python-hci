@@ -21,8 +21,8 @@ class GAP_LinkEstablished(VendorSpecificEvent):
     @property
     def device_address(self):
         OFFSET, SIZE_OCTETS = 7, 6
-        device_address = self._get_data(OFFSET, SIZE_OCTETS)
-        return _bytes_to_hex_string(device_address)
+        device_address = self._get_data(OFFSET, SIZE_OCTETS)[::-1]
+        return device_address
 
     @property
     def connection_handle(self):
@@ -72,7 +72,7 @@ class GAP_LinkEstablished(VendorSpecificEvent):
             'Clock Accuracy: {} ({})']).format(
             hex(self.device_address_type),
             GAP_LinkEstablished.AdressType(self.device_address_type).name,
-            self.device_address,
+            _bytes_to_hex_string(self.device_address),
             hex(self.connection_handle),
             int(self.connection_handle),
             hex(self.connection_role),
