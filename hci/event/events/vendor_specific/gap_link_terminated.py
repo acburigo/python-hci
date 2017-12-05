@@ -1,18 +1,16 @@
-from enum import IntEnum
 from struct import unpack_from
 
 from .. import VendorSpecificEvent
 
 
 class GAP_LinkTerminated(VendorSpecificEvent):
-    class Reason(IntEnum):
-        SUPERVISOR_TIMEOUT = 0X08
-        PEER_REQUESTED = 0X13
-        HOST_REQUESTED = 0X16
-        CONTROL_PACKET_TIMEOUT = 0X22
-        CONTROL_PACKET_INSTANT_PASSED = 0X28
-        LSTO_VIOLATION = 0X3B
-        MIC_FAILURE = 0X3D
+    REASON = {0x08: 'Supervisor Timeout',
+              0x13: 'Peer Requested',
+              0x16: 'Host Requested',
+              0x22: 'Control Packet Timeout',
+              0x28: 'Control Packet Instant Passed',
+              0x3B: 'LSTO Violation',
+              0x3D: 'MIC Failure'}
 
     @property
     def connection_handle(self):
@@ -33,4 +31,4 @@ class GAP_LinkTerminated(VendorSpecificEvent):
             hex(self.connection_handle),
             int(self.connection_handle),
             hex(self.reason),
-            GAP_LinkTerminated.Reason(self.reason).name)
+            GAP_LinkTerminated.REASON[self.reason])

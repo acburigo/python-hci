@@ -4,7 +4,7 @@ from ..command_packet import CommandPacket
 
 
 class GAP_TerminateLinkReq(CommandPacket):
-    Reason = {
+    REASON = {
         0x05: 'Authentication Failure',
         0x13: 'Remote User Terminated Connection',
         0x14: 'Remote Device Terminated Connection Due To Low Resources',
@@ -44,5 +44,5 @@ class GAP_TerminateLinkReq(CommandPacket):
             hex(self.conn_handle),
             int(self.conn_handle),
             hex(self.reason),
-            GAP_TerminateLinkReq.Reason[self.reason],
+            GAP_TerminateLinkReq.REASON[self.reason],
         )
