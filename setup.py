@@ -19,6 +19,6 @@ setup(
     keywords=['HCI', 'protocol', 'ti', 'texas instruments', 'encode', 'decode',
               'ble', 'bluetooth low energy'],
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
-    author=['Arthur Crippa Búrigo', 'Pedro Gyrão'],
-    author_email=['arthurcburigo@gmail.com', 'pedrogyrao@hotmail.com'],
+    author='Arthur Crippa Búrigo & Pedro Gyrão',
+    author_email='arthurcburigo@gmail.com',
 )
