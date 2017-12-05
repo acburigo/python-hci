@@ -24,7 +24,7 @@ class GAP_DeviceDiscoveryDone(VendorSpecificEvent):
         @property
         def address(self):
             OFFSET, SIZE_OCTETS = 2, 6
-            address = self._data[OFFSET:OFFSET + SIZE_OCTETS]
+            address = self._data[OFFSET:OFFSET + SIZE_OCTETS][::-1]
             return address
 
         def __str__(self):
