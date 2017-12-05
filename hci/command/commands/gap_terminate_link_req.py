@@ -1,18 +1,18 @@
 from struct import pack, unpack
+from enum import IntEnum
 
 from ..command_packet import CommandPacket
 
 
 class GAP_TerminateLinkReq(CommandPacket):
-    REASON = {
-        0x05: 'Authentication Failure',
-        0x13: 'Remote User Terminated Connection',
-        0x14: 'Remote Device Terminated Connection Due To Low Resources',
-        0x15: 'Remote Device Terminated Connection due to Power Off',
-        0x1A: 'Unsupported Remote Feature',
-        0x29: 'Pairing With Unit Key Not Supported',
-        0x3B: 'Unacceptable Connection Interval',
-    }
+    class Reason(IntEnum):
+        AUTHENTICATION_FAILURE = 0x05
+        REMOTE_USER_TERMINATED_CONNECTION = 0x13
+        REMOTE_DEVICE_TERMINATED_CONNECTION_LOW_RESOURCES = 0x14
+        REMOTE_DEVICE_TERMINATED_CONNECTION_POWER_OFF = 0x15
+        UNSUPPORTED_REMOTE_FEATURE = 0x1A
+        PAIRING_WITH_UNIT_KEY_NOT_SUPPORTED = 0x29
+        UNACCEPTABLE_CONNECTION_INTERVAL = 0x3B
 
     def __init__(self, conn_handle, reason):
         super().__init__(
@@ -44,5 +44,5 @@ class GAP_TerminateLinkReq(CommandPacket):
             hex(self.conn_handle),
             int(self.conn_handle),
             hex(self.reason),
-            GAP_TerminateLinkReq.REASON[self.reason],
+            GAP_TerminateLinkReq.Reason(self.reason).name,
         )
