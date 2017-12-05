@@ -16,7 +16,9 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
     ],
-    keywords='HCI protocol ti texas instruments encode decode ble bluetooth '
-             'low energy',
+    keywords=['HCI', 'protocol', 'ti', 'texas instruments', 'encode', 'decode',
+              'ble', 'bluetooth low energy'],
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
+    author=['Arthur Crippa Búrigo', 'Pedro Gyrão'],
+    author_email=['arthurcburigo@gmail.com', 'pedrogyrao@hotmail.com'],
 )
