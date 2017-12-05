@@ -9,6 +9,7 @@ def _autocast(pkt):
         OpCode.GAP_DEVICE_INITIALIZATION: GAP_DeviceInit,
         OpCode.GAP_ESTABLISH_LINK_REQUEST: GAP_EstablishLinkReq,
         OpCode.GAP_GET_PARAMETER: GAP_GetParam,
+        OpCode.GAP_SET_PARAMETER: GAP_SetParam,
         OpCode.GAP_TERMINATE_LINK_REQUEST: GAP_TerminateLinkReq,
         OpCode.GATT_WRITE: GATT_WriteCharValue,
         OpCode.HCI_RESET: HCI_Reset,
