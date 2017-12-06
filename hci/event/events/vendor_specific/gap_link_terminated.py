@@ -13,10 +13,10 @@ class GAP_LinkTerminated(VendorSpecificEvent):
               0x3D: 'MIC Failure'}
 
     @property
-    def connection_handle(self):
+    def conn_handle(self):
         OFFSET, SIZE_OCTETS = 6, 2
-        connection_handle = self._get_data(OFFSET, SIZE_OCTETS)
-        return unpack_from('<H', connection_handle)[0]
+        conn_handle = self._get_data(OFFSET, SIZE_OCTETS)
+        return unpack_from('<H', conn_handle)[0]
 
     @property
     def reason(self):
@@ -28,7 +28,7 @@ class GAP_LinkTerminated(VendorSpecificEvent):
         return super().__str__() + '\n' + '\n'.join([
             'Connection Handle: {} ({})',
             'Reason {} ({})']).format(
-            hex(self.connection_handle),
-            int(self.connection_handle),
+            hex(self.conn_handle),
+            int(self.conn_handle),
             hex(self.reason),
             GAP_LinkTerminated.REASON[self.reason])

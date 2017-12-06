@@ -25,10 +25,10 @@ class GAP_LinkEstablished(VendorSpecificEvent):
         return device_address
 
     @property
-    def connection_handle(self):
+    def conn_handle(self):
         OFFSET, SIZE_OCTETS = 13, 2
-        connection_handle = self._get_data(OFFSET, SIZE_OCTETS)
-        return unpack_from('<H', connection_handle)[0]
+        conn_handle = self._get_data(OFFSET, SIZE_OCTETS)
+        return unpack_from('<H', conn_handle)[0]
 
     @property
     def connection_role(self):
@@ -73,8 +73,8 @@ class GAP_LinkEstablished(VendorSpecificEvent):
             hex(self.device_address_type),
             GAP_LinkEstablished.AdressType(self.device_address_type).name,
             _bytes_to_hex_string(self.device_address),
-            hex(self.connection_handle),
-            int(self.connection_handle),
+            hex(self.conn_handle),
+            int(self.conn_handle),
             hex(self.connection_role),
             GAP_LinkEstablished.GAP_Profiles(self.connection_role).name,
             hex(self.connection_interval),

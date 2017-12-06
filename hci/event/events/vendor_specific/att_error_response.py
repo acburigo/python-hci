@@ -35,10 +35,10 @@ class ATT_ErrorResponse(VendorSpecificEvent):
     }
 
     @property
-    def connection_handle(self):
+    def conn_handle(self):
         OFFSET, SIZE_OCTETS = 6, 2
-        connection_handle = self._get_data(OFFSET, SIZE_OCTETS)
-        return unpack_from('<H', connection_handle)[0]
+        conn_handle = self._get_data(OFFSET, SIZE_OCTETS)
+        return unpack_from('<H', conn_handle)[0]
 
     @property
     def pdu_length(self):
@@ -71,8 +71,8 @@ class ATT_ErrorResponse(VendorSpecificEvent):
             'Requition OpCode: {} ({})',
             'Handle: {} ({})',
             'Error Code: {} ({})']).format(
-            hex(self.connection_handle),
-            int(self.connection_handle),
+            hex(self.conn_handle),
+            int(self.conn_handle),
             hex(self.pdu_length),
             int(self.pdu_length),
             hex(self.requisition_opcode),

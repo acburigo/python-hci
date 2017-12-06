@@ -5,10 +5,10 @@ from .. import VendorSpecificEvent
 
 class GAP_LinkParamUpdate(VendorSpecificEvent):
     @property
-    def connection_handle(self):
+    def conn_handle(self):
         OFFSET, SIZE_OCTETS = 6, 2
-        connection_handle = self._get_data(OFFSET, SIZE_OCTETS)
-        return unpack_from('<H', connection_handle)[0]
+        conn_handle = self._get_data(OFFSET, SIZE_OCTETS)
+        return unpack_from('<H', conn_handle)[0]
 
     @property
     def connection_interval(self):
@@ -34,8 +34,8 @@ class GAP_LinkParamUpdate(VendorSpecificEvent):
             'Connection Interval: {} ({})',
             'Connection Latency: {} ({})',
             'Connection Timeout: {} ({})']).format(
-            hex(self.connection_handle),
-            int(self.connection_handle),
+            hex(self.conn_handle),
+            int(self.conn_handle),
             hex(self.connection_interval),
             int(self.connection_interval),
             hex(self.connection_latency),
