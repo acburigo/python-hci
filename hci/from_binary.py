@@ -1,4 +1,4 @@
-from struct import unpack_from
+from struct import unpack_from, error
 
 from .hci_packet import HciPacket
 from .asynchronous import AsynchronousDataPacket
@@ -41,8 +41,13 @@ def from_binary(buf):
     incomplete_pkt_data = b''
 
     while (pkt_offset < len(buf)):
-        pkt_type = _parse_pkt_type(buf, pkt_offset)
-        pkt_length = _parse_pkt_length(buf, pkt_type, pkt_offset)
+        try:
+            pkt_type = _parse_pkt_type(buf, pkt_offset)
+            pkt_length = _parse_pkt_length(buf, pkt_type, pkt_offset)
+        except error:
+            incomplete_pkt_data = buf[pkt_offset:]
+            break
+
         pkt_data = buf[pkt_offset:pkt_offset + pkt_length]
 
         if (len(pkt_data) < pkt_length):
