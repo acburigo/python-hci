@@ -5,6 +5,8 @@ from .gap_establish_link_req import GAP_EstablishLinkReq
 from .gap_get_param import GAP_GetParam
 from .gap_set_param import GAP_SetParam
 from .gap_terminate_link_req import GAP_TerminateLinkReq
+from .gap_update_link_param_req import GAP_UpdateLinkParamReq
+from .gap_update_link_param_req_reply import GAP_UpdateLinkParamReqReply
 from .gatt_write_char_value import GATT_WriteCharValue
 from .hci_reset import HCI_Reset
 from .util_build_revision import UTIL_BuildRevision

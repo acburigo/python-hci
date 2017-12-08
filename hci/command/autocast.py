@@ -4,17 +4,44 @@ from .commands import *
 
 def _autocast(pkt):
     _opcode_to_class = {
-        OpCode.ATT_EXCHANGE_MTU_REQUEST: ATT_ExchangeMTUReq,
-        OpCode.GAP_DEVICE_DISCOVERY_REQUEST: GAP_DeviceDiscoveryRequest,
-        OpCode.GAP_DEVICE_INITIALIZATION: GAP_DeviceInit,
-        OpCode.GAP_ESTABLISH_LINK_REQUEST: GAP_EstablishLinkReq,
-        OpCode.GAP_GET_PARAMETER: GAP_GetParam,
-        OpCode.GAP_SET_PARAMETER: GAP_SetParam,
-        OpCode.GAP_TERMINATE_LINK_REQUEST: GAP_TerminateLinkReq,
-        OpCode.GATT_WRITE: GATT_WriteCharValue,
-        OpCode.HCI_RESET: HCI_Reset,
-        OpCode.UTIL_BUILD_REVISION: UTIL_BuildRevision,
-        OpCode.UTIL_FORCE_BOOT: UTIL_ForceBoot,
+        OpCode.ATT_EXCHANGE_MTU_REQUEST:
+            ATT_ExchangeMTUReq,
+
+        OpCode.GAP_DEVICE_DISCOVERY_REQUEST:
+            GAP_DeviceDiscoveryRequest,
+
+        OpCode.GAP_DEVICE_INITIALIZATION:
+            GAP_DeviceInit,
+
+        OpCode.GAP_ESTABLISH_LINK_REQUEST:
+            GAP_EstablishLinkReq,
+
+        OpCode.GAP_GET_PARAMETER:
+            GAP_GetParam,
+
+        OpCode.GAP_SET_PARAMETER:
+            GAP_SetParam,
+
+        OpCode.GAP_TERMINATE_LINK_REQUEST:
+            GAP_TerminateLinkReq,
+
+        OpCode.GAP_UPDATE_LINK_PARAMETER_REQUEST:
+            GAP_UpdateLinkParamReq,
+
+        OpCode.GAP_UPDATE_LINK_PARAMETER_REQUEST_REPLY:
+            GAP_UpdateLinkParamReqReply,
+
+        OpCode.GATT_WRITE:
+            GATT_WriteCharValue,
+
+        OpCode.HCI_RESET:
+            HCI_Reset,
+
+        OpCode.UTIL_BUILD_REVISION:
+            UTIL_BuildRevision,
+
+        OpCode.UTIL_FORCE_BOOT:
+            UTIL_ForceBoot,
     }
 
     try:
