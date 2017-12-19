@@ -40,6 +40,9 @@ def _autocast(pkt):
         OpCode.HCI_RESET:
             HCI_Reset,
 
+        OpCode.LE_SET_DATA_LENGTH:
+            LE_SetDataLength,
+
         OpCode.UTIL_BUILD_REVISION:
             UTIL_BuildRevision,
 
