@@ -34,6 +34,9 @@ def _autocast(pkt):
         OpCode.GATT_WRITE:
             GATT_WriteCharValue,
 
+        OpCode.HCI_EXTENSION_PACKET_ERROR_RATE:
+            HCI_EXT_PacketErrorRate,
+
         OpCode.HCI_RESET:
             HCI_Reset,
 
