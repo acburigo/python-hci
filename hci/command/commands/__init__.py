@@ -8,6 +8,7 @@ from .gap_terminate_link_req import GAP_TerminateLinkReq
 from .gap_update_link_param_req import GAP_UpdateLinkParamReq
 from .gap_update_link_param_req_reply import GAP_UpdateLinkParamReqReply
 from .gatt_write_char_value import GATT_WriteCharValue
+from .hci_ext_one_pkt_per_evt import HCI_EXT_OnePktPerEvt
 from .hci_ext_packet_error_rate import HCI_EXT_PacketErrorRate
 from .hci_reset import HCI_Reset
 from .le_set_data_length import LE_SetDataLength
