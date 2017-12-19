@@ -61,14 +61,16 @@ class GAP_LinkEstablished(VendorSpecificEvent):
         return unpack_from('<B', clock_accuracy)[0]
 
     def __str__(self):
+        CONN_INTERVAL_SCALE_CONST_MS = 1.25
+        CONN_TIMEOUT_SCALE_CONST_MS = 10
         return super().__str__() + '\n' + '\n'.join([
             'Device Address Type: {} ({})',
             'Device Address: {}',
             'Connection Handle: {} ({})',
             'Connection Role: {} ({})',
-            'Connection Interval: {} ({})',
-            'Connection Latency: {} ({})',
-            'Connection Timeout: {} ({})',
+            'Connection Interval: {} ({} ms)',
+            'Connection Latency: {} ({} connection events)',
+            'Connection Timeout: {} ({} ms)',
             'Clock Accuracy: {} ({})']).format(
             hex(self.device_address_type),
             GAP_LinkEstablished.AdressType(self.device_address_type).name,
@@ -78,10 +80,10 @@ class GAP_LinkEstablished(VendorSpecificEvent):
             hex(self.connection_role),
             GAP_LinkEstablished.GAP_Profiles(self.connection_role).name,
             hex(self.connection_interval),
-            int(self.connection_interval),
+            int(self.connection_interval) * CONN_INTERVAL_SCALE_CONST_MS,
             hex(self.connection_latency),
             int(self.connection_latency),
             hex(self.connection_timeout),
-            int(self.connection_timeout),
+            int(self.connection_timeout) * CONN_TIMEOUT_SCALE_CONST_MS,
             hex(self.clock_accuracy),
             int(self.clock_accuracy))
