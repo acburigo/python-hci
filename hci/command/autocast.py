@@ -46,6 +46,12 @@ def _autocast(pkt):
         OpCode.LE_SET_DATA_LENGTH:
             LE_SetDataLength,
 
+        OpCode.LE_SET_DEFAULT_PHY:
+            LE_SetDefaultPhy,
+
+        OpCode.LE_SET_PHY:
+            LE_SetPhy,
+
         OpCode.UTIL_BUILD_REVISION:
             UTIL_BuildRevision,
 
