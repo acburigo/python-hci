@@ -11,3 +11,4 @@ from .gap_link_terminated import GAP_LinkTerminated
 from .att_exchange_mtu_response import ATT_ExchangeMTUResponse
 from .att_mtu_updated import ATT_MtuUpdated
 from .att_error_response import ATT_ErrorResponse
+from .hci_extension_packet_error_rate import HCI_Extension_PacketErrorRate

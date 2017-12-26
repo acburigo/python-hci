@@ -28,6 +28,8 @@ def _autocast(pkt):
             vendor_specific.ATT_MtuUpdated,
         VendorSpecificEvents.ATT_ERROR_RESPONSE:
             vendor_specific.ATT_ErrorResponse,
+        VendorSpecificEvents.HCI_EXTENSION_PACKET_ERROR_RATE:
+            vendor_specific.HCI_Extension_PacketErrorRate
     }
 
     try:
