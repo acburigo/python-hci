@@ -11,19 +11,19 @@ class GAP_DeviceDiscoveryDone(VendorSpecificEvent):
 
         @property
         def event_type(self):
-            OFFSET, SIZE_OCTETS = 0, 1
+            OFFSET, SIZE_OCTETS = 6, 1
             event_type = self._data[OFFSET:OFFSET + SIZE_OCTETS]
             return unpack_from('<B', event_type)[0]
 
         @property
         def address_type(self):
-            OFFSET, SIZE_OCTETS = 1, 1
+            OFFSET, SIZE_OCTETS = 7, 1
             address_type = self._data[OFFSET:OFFSET + SIZE_OCTETS]
             return unpack_from('<B', address_type)[0]
 
         @property
         def address(self):
-            OFFSET, SIZE_OCTETS = 2, 6
+            OFFSET, SIZE_OCTETS = 8, 6
             address = self._data[OFFSET:OFFSET + SIZE_OCTETS][::-1]
             return address
 
