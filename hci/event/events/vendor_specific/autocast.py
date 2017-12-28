@@ -29,7 +29,9 @@ def _autocast(pkt):
         VendorSpecificEvents.ATT_ERROR_RESPONSE:
             vendor_specific.ATT_ErrorResponse,
         VendorSpecificEvents.HCI_EXTENSION_PACKET_ERROR_RATE:
-            vendor_specific.HCI_Extension_PacketErrorRate
+            vendor_specific.HCI_Extension_PacketErrorRate,
+        VendorSpecificEvents.ATT_READ_RESPONSE:
+            vendor_specific.ATT_ReadResponse,
     }
 
     try:
