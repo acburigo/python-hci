@@ -31,6 +31,9 @@ def _autocast(pkt):
         OpCode.GAP_UPDATE_LINK_PARAMETER_REQUEST_REPLY:
             GAP_UpdateLinkParamReqReply,
 
+        OpCode.GATT_READ:
+            GATT_ReadCharValue,
+
         OpCode.GATT_WRITE:
             GATT_WriteCharValue,
 
