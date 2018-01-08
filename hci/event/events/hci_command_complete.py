@@ -42,6 +42,6 @@ class HCI_CommandComplete(EventPacket):
             hex(self.packets),
             int(self.packets),
             hex(self.opcode),
-            OpCode(int(self.opcode)).name,
+            OpCode(self.opcode).name,
             hex(self.status),
             HCI_CommandComplete.Status(self.status).name)
