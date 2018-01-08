@@ -13,3 +13,4 @@ from .att_mtu_updated import ATT_MtuUpdated
 from .att_error_response import ATT_ErrorResponse
 from .hci_extension_packet_error_rate import HCI_Extension_PacketErrorRate
 from .att_read_response  import ATT_ReadResponse
+from .hci_ext_set_tx_power_done import HCI_EXT_SetTxPowerDone

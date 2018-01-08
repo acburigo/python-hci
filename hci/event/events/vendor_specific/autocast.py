@@ -32,6 +32,8 @@ def _autocast(pkt):
             vendor_specific.HCI_Extension_PacketErrorRate,
         VendorSpecificEvents.ATT_READ_RESPONSE:
             vendor_specific.ATT_ReadResponse,
+        VendorSpecificEvents.HCI_EXTENSION_SET_TX_POWER:
+            vendor_specific.HCI_EXT_SetTxPowerDone,
     }
 
     try:
