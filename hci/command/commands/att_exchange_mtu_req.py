@@ -3,11 +3,11 @@ from struct import pack, unpack
 from ..command_packet import CommandPacket
 
 
-class ATT_ExchangeMTUReq(CommandPacket):
+class ATT_ExchangeMtuReq(CommandPacket):
     def __init__(self, conn_handle, client_rx_mtu):
         super().__init__(
             CommandPacket.OpCode.ATT_EXCHANGE_MTU_REQUEST,
-            ATT_ExchangeMTUReq._params_to_binary(conn_handle, client_rx_mtu)
+            ATT_ExchangeMtuReq._params_to_binary(conn_handle, client_rx_mtu)
         )
 
     @staticmethod

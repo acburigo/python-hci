@@ -3,11 +3,11 @@ from struct import pack, unpack
 from ..command_packet import CommandPacket
 
 
-class HCI_ReadRSSI(CommandPacket):
+class HCI_ReadRssi(CommandPacket):
     def __init__(self, conn_handle):
         super().__init__(
             CommandPacket.OpCode.READ_RSSI,
-            HCI_ReadRSSI._params_to_binary(conn_handle)
+            HCI_ReadRssi._params_to_binary(conn_handle)
         )
 
     @staticmethod

@@ -5,7 +5,7 @@ from .commands import *
 def _autocast(pkt):
     _opcode_to_class = {
         OpCode.ATT_EXCHANGE_MTU_REQUEST:
-            ATT_ExchangeMTUReq,
+            ATT_ExchangeMtuReq,
 
         OpCode.GAP_DEVICE_DISCOVERY_REQUEST:
             GAP_DeviceDiscoveryRequest,
@@ -50,7 +50,7 @@ def _autocast(pkt):
             HCI_EXT_SetTxPower,
 
         OpCode.READ_RSSI:
-            HCI_ReadRSSI,
+            HCI_ReadRssi,
 
         OpCode.HCI_RESET:
             HCI_Reset,
