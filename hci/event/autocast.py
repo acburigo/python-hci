@@ -8,7 +8,8 @@ def _autocast(pkt):
         EventCodes.HCI_COMMAND_COMPLETE: events.HCI_CommandComplete
     }
     _class_to_autocast_func = {
-        events.VendorSpecificEvent: events.vendor_specific._autocast
+        events.VendorSpecificEvent: events.vendor_specific._autocast,
+        events.HCI_CommandComplete: events.hci_commands_complete._autocast,
     }
     try:
         pkt.__class__ = _event_code_to_class[pkt.event_code]
