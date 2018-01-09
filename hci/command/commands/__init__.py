@@ -13,6 +13,7 @@ from .hci_ext_one_pkt_per_evt import HCI_EXT_OnePktPerEvt
 from .hci_ext_packet_error_rate import HCI_EXT_PacketErrorRate
 from .hci_ext_reset_system import HCI_EXT_ResetSystem
 from .hci_ext_set_tx_power import HCI_EXT_SetTxPower
+from .hci_read_rssi import HCI_ReadRSSI
 from .hci_reset import HCI_Reset
 from .le_set_data_length import LE_SetDataLength
 from .le_set_default_phy import LE_SetDefaultPhy

@@ -49,6 +49,9 @@ def _autocast(pkt):
         OpCode.HCI_EXTENSION_SET_TX_POWER:
             HCI_EXT_SetTxPower,
 
+        OpCode.READ_RSSI:
+            HCI_ReadRSSI,
+
         OpCode.HCI_RESET:
             HCI_Reset,
 
