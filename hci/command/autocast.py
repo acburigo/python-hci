@@ -43,6 +43,9 @@ def _autocast(pkt):
         OpCode.HCI_EXTENSION_PACKET_ERROR_RATE:
             HCI_EXT_PacketErrorRate,
 
+        OpCode.HCI_EXTENSION_RESET_SYSTEM:
+            HCI_EXT_ResetSystem,
+
         OpCode.HCI_EXTENSION_SET_TX_POWER:
             HCI_EXT_SetTxPower,
 
