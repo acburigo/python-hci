@@ -8,7 +8,7 @@ from .gap_link_established import GAP_LinkEstablished
 from .gap_link_param_update import GAP_LinkParamUpdate
 from .att_write_response import ATT_WriteResponse
 from .gap_link_terminated import GAP_LinkTerminated
-from .att_exchange_mtu_response import ATT_ExchangeMTUResponse
+from .att_exchange_mtu_response import ATT_ExchangeMtuResponse
 from .att_mtu_updated import ATT_MtuUpdated
 from .att_error_response import ATT_ErrorResponse
 from .hci_extension_packet_error_rate import HCI_Extension_PacketErrorRate

@@ -3,7 +3,7 @@ from struct import unpack_from
 from .. import VendorSpecificEvent
 
 
-class ATT_ExchangeMTUResponse(VendorSpecificEvent):
+class ATT_ExchangeMtuResponse(VendorSpecificEvent):
     @property
     def conn_handle(self):
         OFFSET, SIZE_OCTETS = 6, 2

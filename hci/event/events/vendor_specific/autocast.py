@@ -23,7 +23,7 @@ def _autocast(pkt):
         VendorSpecificEvents.GAP_LINK_TERMINATED:
             vendor_specific.GAP_LinkTerminated,
         VendorSpecificEvents.ATT_EXCHANGE_MTU_RESPONSE:
-            vendor_specific.ATT_ExchangeMTUResponse,
+            vendor_specific.ATT_ExchangeMtuResponse,
         VendorSpecificEvents.ATT_MTU_UPDATED_EVT:
             vendor_specific.ATT_MtuUpdated,
         VendorSpecificEvents.ATT_ERROR_RESPONSE:
