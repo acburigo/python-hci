@@ -5,7 +5,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='hci',
-    version='0.0.5',
+    version='0.0.6',
     description='Library for creating and parsing HCI packets.',
     url='https://github.com/acburigo/python-hci',
     license='MIT',
