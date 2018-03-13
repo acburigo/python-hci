@@ -36,6 +36,8 @@ def _autocast(pkt):
             vendor_specific.HCI_EXT_SetTxPowerDone,
         VendorSpecificEvents.HCI_EXTENSION_RESET_SYSTEM:
             vendor_specific.HCI_EXT_ResetSystemDone,
+        VendorSpecificEvents.ATT_FIND_INFORMATION_REQUEST:
+            vendor_specific.ATT_FindInfoRsp,
     }
 
     try:
