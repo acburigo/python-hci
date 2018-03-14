@@ -1,4 +1,4 @@
-from enum import IntEnum
+from enum import Enum
 from struct import unpack_from
 
 from .. import VendorSpecificEvent
@@ -19,8 +19,7 @@ class ATT_FindInfoRsp(VendorSpecificEvent):
         @property
         def uuid(self):
             OFFSET = 2
-            uuid = self._data[OFFSET:]
-            return _bytes_to_hex_string(uuid)
+            return self._data[OFFSET:][::-1]
 
         def __str__(self):
             return '\n'.join([
@@ -28,17 +27,18 @@ class ATT_FindInfoRsp(VendorSpecificEvent):
                 'uuid: {}']).format(
                     hex(self.handle),
                     int(self.handle),
-                    self.uuid)
+                    _bytes_to_hex_string(self.uuid))
 
-    class ReturnFormatKeys(IntEnum):
+    class ReturnFormatKeys(Enum):
         UUID16BITS = 0x01
         UUID128BITS = 0x02
-
+        EMPTY = None
     RETURN_FORMAT = {
         ReturnFormatKeys.UUID16BITS: 'A list of 1 or more handles with'
                                      ' their 16-bit Bluetooth UUIDs',
         ReturnFormatKeys.UUID128BITS: 'A list of 1 or more handles with'
-                                      ' their 128-bit UUIDs'}
+                                      ' their 128-bit UUIDs',
+        ReturnFormatKeys.EMPTY: 'Empty', }
 
     @property
     def conn_handle(self):
@@ -55,14 +55,18 @@ class ATT_FindInfoRsp(VendorSpecificEvent):
     @property
     def format(self):
         OFFSET, SIZE_OCTETS = 9, 1
+        if self.pdu_length == 0:
+            return self.ReturnFormatKeys.EMPTY
         frmt = self._get_data(OFFSET, SIZE_OCTETS)
-        return unpack_from('<B', frmt)[0]
+        return self.ReturnFormatKeys(unpack_from('<B', frmt)[0])
 
     def _infer_info_size_octets(self):
-        if self.format == self.ReturnFormatKeys.UUID16BITS:
+        if self.format is self.ReturnFormatKeys.UUID16BITS:
             return 4
-        elif self.format == self.ReturnFormatKeys.UUID128BITS:
+        elif self.format is self.ReturnFormatKeys.UUID128BITS:
             return 18
+        elif self.format is self.ReturnFormatKeys.EMPTY:
+            return -1
 
     @property
     def infos(self):
@@ -85,6 +89,6 @@ class ATT_FindInfoRsp(VendorSpecificEvent):
             int(self.conn_handle),
             hex(self.pdu_length),
             int(self.pdu_length),
-            hex(self.format),
+            self.format.value,
             self.RETURN_FORMAT[self.format],
             '\n'.join([str(info) for info in self.infos]))
