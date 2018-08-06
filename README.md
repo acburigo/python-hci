@@ -4,6 +4,10 @@ This is a library for creating and parsing HCI packets.
 
 **This library is under construction.**
 
+## Supported Python Versions
+
+This library currently supports **Python 3.5** and possibly latter versions.
+
 ## Usage
 
 ### Create binary packet:
